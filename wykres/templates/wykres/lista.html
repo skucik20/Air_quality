@@ -1,0 +1,105 @@
+{% extends 'wykres/base.html' %}
+{% load static %}
+{% block content %}
+
+
+        <div>
+          <hr class="my-3">
+
+          <ul class="nav flex-column mb-auto">
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center gap-2" href="#">
+                <svg class="bi"><use xlink:href="#gear-wide-connected"/></svg>
+                Settings
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center gap-2" href="#">
+                <svg class="bi"><use xlink:href="#door-closed"/></svg>
+                Sign out
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Lista urządzeń</h1>
+
+      </div>
+<!--&lt;!&ndash;      <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>&ndash;&gt;-->
+<!--        <div class="row mb-3 text-center">-->
+<!--          <div class="col-md-4 themed-grid-col">ID czujnika</div>-->
+<!--          <div class="col-md-1 themed-grid-col">PM2.5</div>-->
+<!--          <div class="col-md-1 themed-grid-col">PM10</div>-->
+<!--          <div class="col-md-1 themed-grid-col">NO2</div>-->
+<!--          <div class="col-md-1 themed-grid-col">CO2</div>-->
+<!--          <div class="col-md-1 themed-grid-col">SO2</div>-->
+<!--          <div class="col-md-1 themed-grid-col">O3</div>-->
+<!--          <div class="col-md-1 themed-grid-col">temperatura</div>-->
+<!--          <div class="col-md-1 themed-grid-col">wilgotność</div>-->
+<!--        </div>-->
+
+<!--        <div class="row mb-3 text-center">-->
+<!--          <div class="col-md-4 themed-grid-col">ID czujnika</div>-->
+<!--          <div class="col-md-1 themed-grid-col">PM2.5</div>-->
+<!--          <div class="col-md-1 themed-grid-col">PM10</div>-->
+<!--          <div class="col-md-1 themed-grid-col">NO2</div>-->
+<!--          <div class="col-md-1 themed-grid-col">CO2</div>-->
+<!--          <div class="col-md-1 themed-grid-col">SO2</div>-->
+<!--          <div class="col-md-1 themed-grid-col">O3</div>-->
+<!--          <div class="col-md-1 themed-grid-col">temperatura</div>-->
+<!--          <div class="col-md-1 themed-grid-col">wilgotność</div>-->
+<!--        </div>-->
+
+
+        <div class="row mb-3 text-center">
+          <div class="col-md-12 themed-grid-col">
+            <div class="pb-3">
+              <!--MOżna tu wpisać dodatkowy tytuł i guess-->
+            </div>
+            <div class="row">
+              <div class="col-md-4 themed-grid-col">ID czujnika</div>
+              <div class="col-md-1 themed-grid-col">
+                    <a href="{% url 'chart_pm25' %}">PM2.5</a>
+              </div>
+              <div class="col-md-1 themed-grid-col">
+                    <a href="{% url 'chart_pm10' %}">PM10</a>
+              </div>
+              <div class="col-md-1 themed-grid-col">
+                    <a href="{% url 'chart_no2' %}">NO2</a>
+              </div>
+              <div class="col-md-1 themed-grid-col">CO2</div>
+              <div class="col-md-1 themed-grid-col">SO2</div>
+              <div class="col-md-1 themed-grid-col">O3</div>
+              <div class="col-md-1 themed-grid-col">temperatura</div>
+              <div class="col-md-1 themed-grid-col">wilgotność</div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 themed-grid-col">
+                    <a href="{% url 'dashboard' %}">001_Czujnik</a>
+              </div>
+              <div class="col-md-1 themed-grid-col">{{ pm25 }}</div>
+              <div class="col-md-1 themed-grid-col">{{ pm10 }}</div>
+              <div class="col-md-1 themed-grid-col">{{ no2 }}</div>
+              <div class="col-md-1 themed-grid-col">{{ co2 }}</div>
+              <div class="col-md-1 themed-grid-col">-</div>
+              <div class="col-md-1 themed-grid-col">-</div>
+              <div class="col-md-1 themed-grid-col">-</div>
+              <div class="col-md-1 themed-grid-col">-</div>
+            </div>
+          </div>
+        </div>
+
+
+        </div>
+    </div>
+    </main>
+
+<!--    <div class="container mt-4">-->
+<!--        <div class="content-section">-->
+
+
+{% endblock content %}

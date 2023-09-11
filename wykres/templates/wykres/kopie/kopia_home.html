@@ -1,0 +1,50 @@
+{% extends 'wykres/base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+    <div class="container mt-4">
+        <div class="content-section">
+        <div id="map" style="height: 600px; width: 600px;"></div>
+
+            {{ stations|json_script:"stations_json" }}
+
+        <script>
+<!--           var map = L.map('map').setView([50.036, 19.95], 11);-->
+<!--           L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {-->
+<!--            maxZoom: 19,-->
+<!--            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'-->
+<!--            }).addTo(map);-->
+
+<!--            https://leaflet-extras.github.io/leaflet-providers/preview/-->
+            var map = L.map('map').setView([50.036, 19.95], 11);
+
+            L.tileLayer.provider('HEREv3.terrainDay', {
+            apiKey: '1ff2cf6e21ea40e2b4e893756b36a136'
+            }).addTo(map);
+
+
+            const LeafIcon = L.Icon.extend({
+                options: {
+                    shadowUrl: 'marker-shadow.png',
+                    iconSize:     [38, 95],
+                    shadowSize:   [50, 64],
+                    iconAnchor:   [22, 94],
+                    shadowAnchor: [4, 62],
+                    popupAnchor:  [-3, -76]
+                }
+            });
+
+            const greenIcon = new LeafIcon({iconUrl: 'C:\\Users\\Konrad\\Desktop\\Magisterka\\Apl_1\\terra\\wykres\\static\\wykres\\images\\marker-icon.png'});
+
+            let stations = JSON.parse(document.getElementById('stations_json').textContent)
+            stations.forEach(station => {
+                L.marker([station.latitude, station.longitude]).addTo(map)
+            })
+        </script>
+        </div>
+    </div>
+
+{% endblock content %}

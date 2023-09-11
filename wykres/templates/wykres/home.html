@@ -1,0 +1,90 @@
+{% extends 'wykres/base.html' %}
+{% load static %}
+{% block content %}
+
+        <div>
+          <hr class="my-3">
+
+          <ul class="nav flex-column mb-auto">
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center gap-2" href="#">
+                <svg class="bi"><use xlink:href="#gear-wide-connected"/></svg>
+                Settings
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center gap-2" href="#">
+                <svg class="bi"><use xlink:href="#door-closed"/></svg>
+                Sign out
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Mapa zanieczyszczenia</h1>
+
+      </div>
+<!--      <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>-->
+
+            <form method="GET" action="{% url 'chart' %}">
+            {{ form.as_p }}
+
+            </form>
+
+            {{ chart|safe }}
+
+            <div id="map" style="height: 600px; width: 1900px;"></div>
+
+            {{ stations|json_script:"stations_json" }}
+
+        <script>
+<!--           var map = L.map('map').setView([50.036, 19.95], 11);-->
+<!--           L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {-->
+<!--            maxZoom: 19,-->
+<!--            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'-->
+<!--            }).addTo(map);-->
+
+<!--            STRONKI ZE STYLAMI MAP-->
+<!--            https://leaflet-extras.github.io/leaflet-providers/preview/-->
+<!--            https://www.jawg.io/lab/styles-->
+                var map = L.map('map').setView([50.036, 19.95], 11);
+
+                L.tileLayer('https://tile.jawg.io/jawg-dark/{z}/{x}/{y}{r}.png?access-token=uFOMP1dSC0fmY7ll8Ap9YyiG96Bd9uyTeGayroYcgwf0XEfITjlNoMiADAYVqqaG', {}).addTo(map);
+                map.attributionControl.addAttribution("<a href=\"https://www.jawg.io\" target=\"_blank\">&copy; Jawg</a> - <a href=\"https://www.openstreetmap.org\" target=\"_blank\">&copy; OpenStreetMap</a>&nbsp;contributors")
+
+
+<!--                L.tileLayer.provider('HEREv3.terrainDay', {-->
+<!--                    apiKey: '<1ff2cf6e21ea40e2b4e893756b36a136>'-->
+<!--                }).addTo(map);-->
+
+<!--            const LeafIcon = L.Icon.extend({-->
+<!--                options: {-->
+<!--                    shadowUrl: 'marker-shadow.png',-->
+<!--                    iconSize:     [38, 95],-->
+<!--                    shadowSize:   [50, 64],-->
+<!--                    iconAnchor:   [22, 94],-->
+<!--                    shadowAnchor: [4, 62],-->
+<!--                    popupAnchor:  [-3, -76]-->
+<!--                }-->
+<!--            });-->
+
+<!--            const greenIcon = new LeafIcon({iconUrl: 'C:\\Users\\Konrad\\Desktop\\Magisterka\\Apl_1\\terra\\wykres\\static\\wykres\\images\\marker-icon.png'});-->
+
+            let stations = JSON.parse(document.getElementById('stations_json').textContent)
+            stations.forEach(station => {
+                L.marker([station.latitude, station.longitude]).addTo(map)
+            })
+        </script>
+        </div>
+    </div>
+    </main>
+
+<!--    <div class="container mt-4">-->
+<!--        <div class="content-section">-->
+
+
+{% endblock content %}

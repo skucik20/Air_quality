@@ -1,0 +1,61 @@
+{% extends 'wykres/base.html' %}
+{% load static %}
+{% block content %}
+
+
+        <div>
+          <hr class="my-3">
+
+          <ul class="nav flex-column mb-auto">
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center gap-2" href="#">
+                <svg class="bi"><use xlink:href="#gear-wide-connected"/></svg>
+                Settings
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center gap-2" href="#">
+                <svg class="bi"><use xlink:href="#door-closed"/></svg>
+                Sign out
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Dashboard</h1>
+
+      </div>
+
+<!--        <div class="row">-->
+<!--            <div class="col-6">{{ dashboard_1|safe }}</div>-->
+<!--            <div class="col-6">{{ dashboard_2|safe }}</div>-->
+<!--        </div>-->
+
+
+        <div class="row">
+            <div class="col-3">{{ dashboard_1|safe }}</div>
+            <div class="col-3">{{ dashboard_2|safe }}</div>
+            <div class="col-3">{{ dashboard_3|safe }}</div>
+            <div class="col-3">{{ dashboard_4|safe }}</div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">{{ dashboard_5|safe }}</div>
+            <div class="col-6">{{ dashboard_6|safe }}</div>
+        </div>
+
+        </div>
+
+    </div>
+
+    </main>
+
+<!--    <div class="container mt-4">-->
+<!--        <div class="content-section">-->
+
+
+{% endblock content %}
